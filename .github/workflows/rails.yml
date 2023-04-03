@@ -11,10 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         run: git pull
-        working-directory: ./citadel
+        working-directory: /home/docker/citadel/citadel
       - name: Build Docker image
         run: |
           export DOCKER_BUILDKIT=1
           docker build -t citadel .
+        working-directory: /home/docker/citadel
       - name: Recreate Docker containers
         run: docker-compose up -d
+        working-directory: /home/docker/citadel
